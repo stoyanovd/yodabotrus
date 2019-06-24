@@ -45,6 +45,7 @@ env_file = '.env.yaml'
 token_str = 'TELEGRAM_BOT_TOKEN'
 
 if os.path.exists(env_file):
+    print('find local env file')
     with open(env_file, 'r') as f:
         data = load(f)
         assert token_str in data.keys()
