@@ -27,9 +27,10 @@ orders_dict = {
 }
 
 
-def sorting_rule(s):
-    if s in orders_dict.keys():
-        return orders_dict[s]
+def sorting_rule(word_desc):
+    for k in orders_dict.keys():
+        if k in word_desc:
+            return orders_dict[k]
     return 0
 
 
