@@ -39,6 +39,7 @@ def echo(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="let's work with it")
 
     msg = update.message.text
+    print(msg)
 
     morph = pymorphy2.MorphAnalyzer()
 
