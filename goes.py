@@ -43,7 +43,7 @@ def echo(bot, update):
 
     a = msg.split(' ')
     [print(morph.parse(a[i])[0].tag) for i in range(min(len(a), 20))]
-    a = sorted(a, key=lambda s: 'VERB' in morph.parse(s)[0].tag)
+    a = sorted(a, key=lambda s: sorting_rule(morph.parse(s)[0].tag))
 
     ans = ' '.join(a)
     bot.send_message(chat_id=update.message.chat_id, text=ans)
