@@ -7,3 +7,5 @@ pyyaml
 requests[security]
 certifi
 
+pymorphy2
+pymorphy2-dicts-ru

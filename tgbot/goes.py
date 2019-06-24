@@ -3,6 +3,7 @@ import os
 from telegram.ext import Updater, CommandHandler
 import logging
 from telegram.ext import MessageHandler, Filters
+import pymorphy2
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -21,10 +22,19 @@ def hello(bot, update):
 
 def echo(bot, update):
     # global d
-    msg = update.message.text
-    ans = "wwww"
+    bot.send_message(chat_id=update.message.chat_id, text="let's work with it")
 
-    bot.send_message(chat_id=update.message.chat_id, text="I find: " + ans)
+    msg = update.message.text
+
+    morph = pymorphy2.MorphAnalyzer()
+
+    a = msg.split(' ')
+    print(morph.parse(a[0])[0].tag)
+    print(morph.parse(a[1])[0].tag)
+    a = sorted(a, key=lambda s: 'VERB' in morph.parse(s)[0].tag)
+
+    ans = ' '.join(a)
+    bot.send_message(chat_id=update.message.chat_id, text=ans)
 
 
 #################################################
