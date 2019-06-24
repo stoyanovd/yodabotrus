@@ -20,6 +20,19 @@ def hello(bot, update):
     update.message.reply_text(t)
 
 
+orders_dict = {
+    'VERB': 4,
+    'INFN': 3,
+    'PRED': 2
+}
+
+
+def sorting_rule(s):
+    if s in orders_dict.keys():
+        return orders_dict[s]
+    return 0
+
+
 def echo(bot, update):
     # global d
     bot.send_message(chat_id=update.message.chat_id, text="let's work with it")
@@ -29,8 +42,7 @@ def echo(bot, update):
     morph = pymorphy2.MorphAnalyzer()
 
     a = msg.split(' ')
-    print(morph.parse(a[0])[0].tag)
-    print(morph.parse(a[1])[0].tag)
+    [print(morph.parse(a[i])[0].tag) for i in range(min(len(a), 20))]
     a = sorted(a, key=lambda s: 'VERB' in morph.parse(s)[0].tag)
 
     ans = ' '.join(a)
